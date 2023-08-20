@@ -1,9 +1,11 @@
+import { Text, View } from "react-native"
+
 
 const ManageExpense = () => {
   return (
-    <div>
-      
-    </div>
+      <View>
+        <Text>ManageExpense  </Text>
+      </View>
   )
 }
 

@@ -1,9 +1,10 @@
+import { Text, View } from "react-native"
 
 const RecentExpenses = () => {
   return (
-    <div>
-      
-    </div>
+    <View>
+      <Text>Recent Expense</Text>
+    </View>
   )
 }
 

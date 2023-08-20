@@ -1,9 +1,10 @@
+import { Text, View } from "react-native"
 
 const AllExpenses = () => {
   return (
-    <div>
-      
-    </div>
+    <View>
+      <Text>All Expenses</Text>
+    </View>
   )
 }
 

@@ -2,6 +2,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {GlobalStyles} from './constants/styles';
 
 import ManageExpense from './screens/ManageExpense';
 import RecentExpenses from './screens/RecentExpenses';
@@ -13,7 +14,10 @@ const BottomTabs = createBottomTabNavigator();
 function ExpensesOverview() {
   return (
     <BottomTabs.Navigator screenOptions={{
-      
+      headerStyle: { background: GlobalStyles.colors.primary500 } ,
+      headerTintColor: 'white',
+      tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
+      tabBarActiveTintColor: GlobalStyles.colors.accent500,
     }}>
       <BottomTabs.Screen name='RecentExpenses' component={RecentExpenses}/>
       <BottomTabs.Screen name='AllExpenses' component={AllExpenses} />

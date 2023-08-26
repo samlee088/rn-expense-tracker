@@ -28,7 +28,7 @@ function ExpensesOverview() {
               icon="add"
               size={24}
               color={tintColor}
-              onPressPrompt={() => {
+              onPress={() => {
                 navigation.navigate("ManageExpense");
               }}
             />

@@ -4,19 +4,14 @@ import { useState } from "react";
 import Button from "../UI/Button";
 import { GlobalStyles } from "../../constants/styles";
 
-const ExpenseForm = ({
-  defaultValues,
-  onCancel,
-  onSubmit,
-  submitButtonLabel,
-}) => {
+function ExpenseForm({ submitButtonLabel, onCancel, onSubmit, defaultValues }) {
   const [inputs, setInputs] = useState({
     amount: {
       value: defaultValues ? defaultValues.amount.toString() : "",
       isValid: true,
     },
     date: {
-      value: defaultValues ? defaultValues.date.toISOString().slice(0, 10) : "",
+      value: defaultValues ? getFormattedDate(defaultValues.date) : "",
       isValid: true,
     },
     description: {
@@ -46,7 +41,7 @@ const ExpenseForm = ({
     const descriptionIsValid = expenseData.description.trim().length > 0;
 
     if (!amountIsValid || !dateIsValid || !descriptionIsValid) {
-      // Alert.alert("Invalid Input", "Please check your input values");
+      // Alert.alert('Invalid input', 'Please check your input values');
       setInputs((curInputs) => {
         return {
           amount: { value: curInputs.amount.value, isValid: amountIsValid },
@@ -64,13 +59,13 @@ const ExpenseForm = ({
   }
 
   const formIsInvalid =
-    !!inputs.amountIsValid ||
-    !!inputs.date.isValid ||
-    !!inputs.description.isValid;
+    !inputs.amount.isValid ||
+    !inputs.date.isValid ||
+    !inputs.description.isValid;
 
   return (
     <View style={styles.form}>
-      <Text style={styles.title}> Your Expense</Text>
+      <Text style={styles.title}>Your Expense</Text>
       <View style={styles.inputsRow}>
         <Input
           style={styles.rowInput}
@@ -99,24 +94,28 @@ const ExpenseForm = ({
         invalid={!inputs.description.isValid}
         textInputConfig={{
           multiline: true,
+          // autoCapitalize: 'none'
+          // autoCorrect: false // default is true
           onChangeText: inputChangedHandler.bind(this, "description"),
           value: inputs.description.value,
         }}
       />
       {formIsInvalid && (
-        <Text style={styles.errorText}>Invalid Inputs Detected</Text>
+        <Text style={styles.errorText}>
+          Invalid input values - please check your entered data!
+        </Text>
       )}
       <View style={styles.buttons}>
-        <Button mode="flat" onPress={onCancel} style={styles.button}>
+        <Button style={styles.button} mode="flat" onPress={onCancel}>
           Cancel
         </Button>
-        <Button onPress={submitHandler} style={styles.button}>
+        <Button style={styles.button} onPress={submitHandler}>
           {submitButtonLabel}
         </Button>
       </View>
     </View>
   );
-};
+}
 
 export default ExpenseForm;
 

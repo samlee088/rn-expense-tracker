@@ -6,11 +6,10 @@ import Button from "../components/UI/Button";
 import { ExpensesContext } from "../store/expensesContext";
 import ExpenseForm from "../components/ManageExpense/ExpenseForm";
 
-const ManageExpense = ({ route, navigation }) => {
+function ManageExpense({ route, navigation }) {
   const expensesCtx = useContext(ExpensesContext);
 
   const editedExpenseId = route.params?.expenseId;
-
   const isEditing = !!editedExpenseId;
 
   const selectedExpense = expensesCtx.expenses.find(
@@ -19,7 +18,7 @@ const ManageExpense = ({ route, navigation }) => {
 
   useLayoutEffect(() => {
     navigation.setOptions({
-      title: isEditing ? "Edited Expense" : "Add Expense",
+      title: isEditing ? "Edit Expense" : "Add Expense",
     });
   }, [navigation, isEditing]);
 
@@ -36,7 +35,7 @@ const ManageExpense = ({ route, navigation }) => {
     if (isEditing) {
       expensesCtx.updateExpense(editedExpenseId, expenseData);
     } else {
-      expensesCtx.addExpense(editedExpenseId, expenseData);
+      expensesCtx.addExpense(expenseData);
     }
     navigation.goBack();
   }
@@ -61,7 +60,7 @@ const ManageExpense = ({ route, navigation }) => {
       )}
     </View>
   );
-};
+}
 
 export default ManageExpense;
 

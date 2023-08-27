@@ -22,18 +22,16 @@ function ExpensesOverview() {
         headerTintColor: "white",
         tabBarStyle: { backgroundColor: GlobalStyles.colors.primary500 },
         tabBarActiveTintColor: GlobalStyles.colors.accent500,
-        headerRight: ({ tintColor }) => {
-          return (
-            <IconButton
-              icon="add"
-              size={24}
-              color={tintColor}
-              onPress={() => {
-                navigation.navigate("ManageExpense");
-              }}
-            />
-          );
-        },
+        headerRight: ({ tintColor }) => (
+          <IconButton
+            icon="add"
+            size={24}
+            color={tintColor}
+            onPress={() => {
+              navigation.navigate("ManageExpense");
+            }}
+          />
+        ),
       })}
     >
       <BottomTabs.Screen
